@@ -1,0 +1,62 @@
+{% extends 'shop/basetemplate.html' %}
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+{% endblock %}
+{% block title %}  Cart {% endblock %}
+    {% block body %}
+    <div class="container mb-8">
+
+<div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Available</th>
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in cart %}
+                        <tr>
+                            <td><img src="{{i.prod_id.img.url}}" style="width: 50px; height: 50px;">  </td>
+                            <td>{{i.prod_id.prd_name}}</td>
+                            <td>In stock</td>
+                            <td><input class="form-control" type="text" value="1"></td>
+                            <td class="text-right">{{i.prod_id.price}} ₹</td>
+                            <td class="text-right"><a href = "/shop/cart/Cdelete/{{i.id}}"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></a> </td>
+                        </tr>
+                       
+                       {% endfor %}
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-success">Continue Shopping</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                   <a onclick="purchase()" href="/shop/cart/checkout"> <button class="btn btn-lg bg-orange text-uppercase">Checkout</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    function purchase(){
+        alert('Your Purchase Successfully completed');
+    }
+</script>
+
+{% endblock %}

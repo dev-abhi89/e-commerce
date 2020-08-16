@@ -1,0 +1,110 @@
+{% extends 'shop/basetemplate.html' %}
+{% block title %} Product {% endblock %}
+
+{% block style %}
+    <style>
+        .head{
+            font-size: 26px;
+        }
+        .price{
+            color:#fe980f;
+            font-size: 26px;
+            font-weight: bold;
+        }
+        input{
+            border: 1px solid #ccc;
+            font-weight: bold;
+            height: 33px;
+            text-align: center;
+            width: 30px;
+        }
+        .cart{
+            background: #fe980f;
+            color: white;
+            font-size: 16px;
+            margin-left: 25px;
+        }
+        .cart:hover{
+            background: #ac6e1e;
+
+        }
+        .try{
+            background: #37fe0f;
+            color: white;
+            font-size: 16px;
+            margin-left: 25px;
+
+
+        }
+        .try:hover{
+            background: #71f856;
+        }
+        .dhead{
+            
+            color: rgb(255, 126, 40);
+            font-size: 30px;
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+
+    {% endblock %}
+  
+    {% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 ">
+                <img class="img-fluid" alt="Responsive image" style="max-height: 70vh;" src="{{product.img.url}}" />
+                
+            </div>
+
+
+            <div class="col-md-7 mt-5">
+                <h3>{{product.prd_name}}</h3>
+                <p><b>Category</b> {{product.category.category}} </p>
+                <br>
+               <p class="head">Price :   <span class="price"> {{product.price}} ₹</span> </p>
+               <p><b>Availablity:</b> In Stock</p>
+               <p><b>condition:</b> New</p>
+               <label for="quantity"><b>Quantity :</b></label>
+               <input type="text" value="1">
+                
+                <!-- <form method = "GET">
+                    <input type="text" value="{{p_id}}" style="display: none;"> -->
+                
+               <button class="btn btn-default cart" onclick="cart()" >Add To Cart</button>
+               <button class="btn btn-default try">Try Now</button>
+
+
+                    <form id="cart" action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="cart" value="{{p_id}}" style="display: none;"> </form>
+
+
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <h5 class="dhead">
+            Discription
+        </h5>
+        <p style="padding:15px;">
+            <small>
+            {{product.dics}}
+            </small>
+            </p>
+    
+        </div>
+
+        {% endblock %}
+
+  {% block script %} 
+  <script>
+      function cart(){
+          document.getElementById('cart').submit();
+      }
+
+  </script>
+  
+  {% endblock %}

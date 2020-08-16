@@ -1,0 +1,48 @@
+{% extends 'shop/basetemplate.html' %}
+{% block title %} Category {% endblock %}
+{% block body %}
+
+
+<div class="container-fluid bg-light-gray">
+
+    <div class="container pt-5">
+       
+        <div class="row">
+          <h3>{{prods.0.category.category}}</h3>
+        </div>
+            <div class="row">
+            <div class="underline"></div>
+        </div>
+    </div>
+    
+    <!-- | -->
+    
+    <div class="container mt-5 ">
+        <div class="row">
+            {% for i in prods  %}
+            <div class=" col-md-3 mb-4">
+                <div class="card" >
+                    <img src="{{i.img.url}}" style="height:320px;" alt="card-1" class="card-img-top">
+                    <div class="card-body">
+                        <h5>{{i.prd_name}}</h5>
+                        <h6>{{i.price}}</h6>
+                    <a href="/shop/product/{{i.id}}">	<button class="btn btn-danger"></i> VIEW</button></a>
+                    </div>
+                </div>
+            </div>
+    
+            
+            {% endfor %}
+    
+            
+        
+        
+            
+            
+        
+        </div>
+    </div>
+
+
+
+{% endblock %}
